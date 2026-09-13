@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tranztechnologies</groupId>
-	<artifactId>pgn</artifactId>
+	<artifactId>tranz-pgn</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>PGN Parser</name>
+	<name>Tranz PGN</name>
 	<description>A lightweight Portable Game Notation parser.</description>
 	<url/>
 	<licenses>

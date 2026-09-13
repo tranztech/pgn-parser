@@ -1,195 +1,103 @@
 package com.tranztechnologies.pgn;
 
-import java.util.HashMap;
-import java.util.Stack;
+import java.util.List;
 import java.util.regex.Pattern;
 
-/**
- * @author Karthikeyan
- *         Masters Chess Academy
- *         Nagercoil
- *         <p>
- *         This class is used to parse the notation in the PGN and convert it
- *         into Java objects
- */
+/** Parses PGN movetext into the legacy Java object model. */
 public class NotationParser {
-    private static final String MOVE_NUMBER = "MOVE_NUMBER";
-    private static final String ANNOTATION = "ANNOTATION";
-    private static final String MOVE = "MOVE";
-    private static final String DOLLAR = "$";
-    private static final String RESULT = "RESULT";
-    private static final String SYMBOL = "SYMBOL";
-    private static final String COLOR = "COLOR";
-    private static final String HASH = "#";
-    private static final Pattern moveNumberPattern = Pattern.compile("([0-9]+)\\.+");
+    private static final Pattern MOVE_NUMBER = Pattern.compile("([0-9]+)\\.+");
     private String notationStr;
-    private final HashMap<Integer, Integer> parenthesisMap = new HashMap<>();
     private PGNObject pgnObject;
-
-    private HashMap<Integer, Integer> getParenthesisMap() {
-        return parenthesisMap;
-    }
-
-    public PGNObject getPgnObject() {
-        return pgnObject;
-    }
-
-    public void setPgnObject(PGNObject pgnObject) {
-        this.pgnObject = pgnObject;
-    }
 
     public NotationParser(String notationStr, PGNObject pgnObject) {
         setNotationStr(notationStr);
         setPgnObject(pgnObject);
     }
 
-    public String getNotationStr() {
-        return notationStr;
-    }
-
-    public void setNotationStr(String notationStr) {
-        this.notationStr = notationStr;
-    }
-
-    private void putParenthesisMap(int key, int value) {
-        getParenthesisMap().put(key, value);
-    }
-
-    private String findToken(String token) {
-        if (moveNumberPattern.matcher(token).matches()) {
-            return MOVE_NUMBER;
-        } else if (token.startsWith(DOLLAR)) {
-            return ANNOTATION;
-        } else if (PGNUtil.getUtil().getResults().contains(token)) {
-            return RESULT;
-        } else if (Annotation.getAnnotationMap().containsKey(token)) {
-            return SYMBOL;
-        } else if (token.startsWith(HASH)) {
-            return COLOR;
-        } else {
-            return MOVE;
-        }
-    }
-
-    private int getMoveId() {
-        return getPgnObject().getMoveId();
-    }
-
-    private void setMoveId(int moveId) {
-        getPgnObject().setMoveId(moveId);
-    }
+    public String getNotationStr() { return notationStr; }
+    public void setNotationStr(String notationStr) { this.notationStr = notationStr; }
+    public PGNObject getPgnObject() { return pgnObject; }
+    public void setPgnObject(PGNObject pgnObject) { this.pgnObject = pgnObject; }
 
     public NotationObject parse() {
-        return parse(0);
+        List<PgnTokenizer.Token> tokens = PgnTokenizer.tokenize(notationStr);
+        Cursor cursor = new Cursor();
+        return parse(tokens, cursor, 0, notationStr.trim());
     }
 
-    private NotationObject parse(int parentId) {
-        int moveId;
-        String notationStr = getNotationStr() + " ";
-        initMap(notationStr);
-        NotationObject notationObject = new NotationObject();
-        notationObject.setNotation(notationStr);
-        moveId = getMoveId();
-        setMoveId(++moveId);
-        MoveObject moveObject = new MoveObject(getMoveId());
-        if (parentId != 0) {
-            moveObject.setParentId(parentId);
-        }
-        StringBuilder token = new StringBuilder();
-        for (int iter = 0; iter < notationStr.length(); iter++) {
-            char ch = notationStr.charAt(iter);
-            switch (ch) {
-                case ' ':
-                    String tokenStr = token.toString();
-                    if ("".equals(tokenStr)) {
-                        break;
-                    }
-                    String tokenType = findToken(tokenStr);
-                    if (MOVE_NUMBER.equals(tokenType)) {
-                        if (moveObject.getMove().length() > 0) {
-                            parentId = moveObject.getMoveId();
-                            moveId = getMoveId();
-                            setMoveId(++moveId);
-                            moveObject = new MoveObject(getMoveId());
-                            moveObject.setParentId(parentId);
-                        }
-                        int moveNumber = Integer.parseInt(tokenStr.replace(".", ""));
-                        moveObject.setMoveNumber(moveNumber);
-                        boolean isWhite = !tokenStr.contains("...");
-                        moveObject.setColour(isWhite);
-                    } else if (ANNOTATION.equals(tokenType)) {
-                        moveObject.addAnnotation(tokenStr);
-                    } else if (MOVE.equals(tokenType)) {
-                        if (moveObject.getMove().length() > 0) {
-                            int moveNumber = moveObject.getMoveNumber();
-                            parentId = moveObject.getMoveId();
-                            moveId = getMoveId();
-                            setMoveId(++moveId);
-                            moveObject = new MoveObject(getMoveId());
-                            moveObject.setParentId(parentId);
-                            moveObject.setColour(false);
-                            moveObject.setMoveNumber(moveNumber);
-                        }
-                        moveObject.setMove(tokenStr);
-                        getPgnObject().addMoveIdMap(moveObject.getMoveId(), moveObject.getMove());
-                        notationObject.addMove(moveObject);
-                    } else if (RESULT.equals(tokenType)) {
-                        String result = getPgnObject().getResult();
-                        if (result == null || "".equals(result)) {
-                            getPgnObject().setResult(tokenStr);
-                        }
-                    } else if (SYMBOL.equals(tokenType)) {
-                        moveObject.addAnnotation(Annotation.getAnnotationMap().get(tokenStr));
-                    } else if (COLOR.equals(tokenType)) {
-                        moveObject.setColor(tokenStr);
-                    }
-                    token = new StringBuilder();
-                    break;
-                case '{':
-                    int end = getParenthesisMap().get(iter);
-                    String comments = notationStr.substring(iter + 1, end);
-                    if (moveObject.getMoveNumber().equals(0)) {
-                        notationObject.setPreComment(comments);
-                    } else {
-                        if (moveObject.getMove().length() == 0) {
-                            moveObject.setPreComment(comments);
-                        } else {
-                            moveObject.setPostComment(comments);
-                        }
-                    }
-                    iter = end - 1;
-                    break;
-                case '(':
-                    end = getParenthesisMap().get(iter);
-                    String subVariation = notationStr.substring(iter + 1, end);
-                    NotationParser parser = new NotationParser(subVariation, getPgnObject());
-                    NotationObject subVariationObject = parser.parse(moveObject.getParentId());
-                    moveObject.addSubVariation(subVariationObject);
-                    iter = end - 1;
-                    break;
-                case ')':
-                case '}':
-                    break;
-                default:
-                    token.append(ch);
+    private NotationObject parse(List<PgnTokenizer.Token> tokens, Cursor cursor, int parentId, String notation) {
+        NotationObject result = new NotationObject();
+        result.setNotation(notation);
+        MoveObject current = newMove(parentId);
+
+        while (cursor.index < tokens.size()) {
+            PgnTokenizer.Token token = tokens.get(cursor.index++);
+            if (token.type() == PgnTokenizer.Type.VARIATION_END) break;
+            if (token.type() == PgnTokenizer.Type.COMMENT) {
+                attachComment(result, current, token.text());
+                continue;
+            }
+            if (token.type() == PgnTokenizer.Type.VARIATION_START) {
+                int start = cursor.index;
+                NotationObject variation = parse(tokens, cursor, current.getParentId(), variationText(tokens, start, cursor.index));
+                current.addSubVariation(variation);
+                continue;
+            }
+
+            String value = token.text();
+            if (MOVE_NUMBER.matcher(value).matches()) {
+                if (!current.getMove().isEmpty()) current = newMove(current.getMoveId());
+                current.setMoveNumber(Integer.parseInt(value.replace(".", "")));
+                current.setColour(!value.contains("..."));
+            } else if (isResult(value)) {
+                if (pgnObject.getResult().isEmpty()) pgnObject.setResult(value);
+            } else if (value.startsWith("$")) {
+                current.addAnnotation(value);
+            } else if (Annotation.getAnnotationMap().containsKey(value)) {
+                current.addAnnotation(Annotation.getAnnotationMap().get(value));
+            } else if (value.startsWith("#")) {
+                current.setColor(value);
+            } else {
+                if (!current.getMove().isEmpty()) {
+                    int previousId = current.getMoveId();
+                    int number = current.getMoveNumber();
+                    current = newMove(previousId);
+                    current.setMoveNumber(number);
+                    current.setColour(false);
+                }
+                current.setMove(value);
+                pgnObject.addMoveIdMap(current.getMoveId(), value);
+                result.addMove(current);
             }
         }
-        return notationObject;
+        return result;
     }
 
-    private void initMap(String notationStr) {
-        Stack<Integer> parenthesisStack = new Stack<>();
-        Stack<Integer> curlyParenthesisStack = new Stack<>();
-        for (int commentIndex = 0; commentIndex < notationStr.length(); commentIndex++) {
-            if (notationStr.charAt(commentIndex) == '(')
-                parenthesisStack.push(commentIndex);
-            else if (notationStr.charAt(commentIndex) == ')') {
-                putParenthesisMap(parenthesisStack.pop(), commentIndex);
-            } else if (notationStr.charAt(commentIndex) == '}') {
-                putParenthesisMap(curlyParenthesisStack.pop(), commentIndex);
-            } else if (notationStr.charAt(commentIndex) == '{') {
-                curlyParenthesisStack.push(commentIndex);
-            }
-        }
+    private MoveObject newMove(int parentId) {
+        pgnObject.setMoveId(pgnObject.getMoveId() + 1);
+        MoveObject move = new MoveObject(pgnObject.getMoveId());
+        move.setParentId(parentId);
+        return move;
     }
+
+    private static void attachComment(NotationObject notation, MoveObject move, String comment) {
+        if (move.getMoveNumber() == 0) notation.setPreComment(comment);
+        else if (move.getMove().isEmpty()) move.setPreComment(comment);
+        else move.setPostComment(comment);
+    }
+
+    private static boolean isResult(String token) {
+        return token.equals("1-0") || token.equals("0-1") || token.equals("1/2-1/2") || token.equals("*");
+    }
+
+    private static String variationText(List<PgnTokenizer.Token> tokens, int start, int ignoredEnd) {
+        StringBuilder text = new StringBuilder();
+        for (int i = start; i < tokens.size() && tokens.get(i).type() != PgnTokenizer.Type.VARIATION_END; i++) {
+            if (!text.isEmpty()) text.append(' ');
+            text.append(tokens.get(i).text());
+        }
+        return text.toString();
+    }
+
+    private static final class Cursor { private int index; }
 }

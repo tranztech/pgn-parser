@@ -36,7 +36,7 @@ public class PGNParser {
                 PGNUtil.getUtil().add(pgnObject, pgnLine.substring(1, spaceIndex),
                         pgnLine.substring(spaceIndex, pgnLine.length() - 1).replace("\"", "").trim());
             } else {
-                notation.append(pgnLine).append(" ");
+                notation.append(pgnLine).append('\n');
             }
         }
         if (parseNotation) {

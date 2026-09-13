@@ -21,6 +21,18 @@
       "input": "malformed/unterminated-comment.pgn",
       "mode": "STRICT",
       "diagnostic": "PGN_UNTERMINATED_COMMENT"
+    },
+    {
+      "id": "PGN-0004",
+      "description": "Unicode, BOM, tabs, and semicolon comments",
+      "input": "encoding/unicode-whitespace.pgn",
+      "mode": "TOLERANT"
+    },
+    {
+      "id": "PGN-0005",
+      "description": "Two games in one document",
+      "input": "multi-game/two-games.pgn",
+      "mode": "TOLERANT"
     }
   ]
 }

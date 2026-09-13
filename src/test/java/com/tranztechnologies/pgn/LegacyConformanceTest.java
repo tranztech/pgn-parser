@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 class LegacyConformanceTest {
@@ -51,5 +52,41 @@ class LegacyConformanceTest {
         assertTrue(document.games().isEmpty());
         assertEquals("PGN_UNTERMINATED_COMMENT", document.diagnostics().getFirst().code());
         assertEquals(PgnSeverity.ERROR, document.diagnostics().getFirst().severity());
+    }
+
+    @Test
+    void tokenizerSupportsUnicodeTabsBomAndSemicolonComments() throws Exception {
+        String source = Files.readString(Path.of("conformance/encoding/unicode-whitespace.pgn"));
+        PgnDocument document = Pgn.parse(source);
+        PgnGame game = document.games().getFirst();
+
+        assertEquals("Café шахматы", game.tags().getFirst().value());
+        assertEquals(List.of("e4", "e5", "Nf3", "Nc6"), game.moves().stream().map(PgnMove::san).toList());
+        assertEquals(" first move", game.moves().getFirst().commentsAfter().getFirst().text());
+    }
+
+    @Test
+    void parsesMultipleGamesAndWritesValidDeterministicJson() throws Exception {
+        String source = Files.readString(Path.of("conformance/multi-game/two-games.pgn"));
+        PgnDocument document = Pgn.parse(source);
+
+        assertEquals(2, document.games().size());
+        assertEquals("First", document.games().get(0).tags().getFirst().value());
+        assertEquals("Second", document.games().get(1).tags().getFirst().value());
+        String json = PgnJson.write(document);
+        new ObjectMapper().readTree(json);
+        assertEquals(json, PgnJson.write(document));
+    }
+
+    @Test
+    void enforcesInputAndVariationDepthLimits() {
+        PgnDocument oversized = Pgn.parse("1. e4 *", PgnOptions.builder().maxInputBytes(3).build());
+        assertEquals("PGN_INPUT_LIMIT_EXCEEDED", oversized.diagnostics().getFirst().code());
+
+        PgnDocument tooDeep = Pgn.parse("1. e4 (((1. d4))) *",
+                PgnOptions.builder().maxVariationDepth(2).build());
+        assertFalse(tooDeep.success());
+        assertTrue(tooDeep.games().isEmpty());
+        assertEquals("PGN_VARIATION_DEPTH_EXCEEDED", tooDeep.diagnostics().getFirst().code());
     }
 }

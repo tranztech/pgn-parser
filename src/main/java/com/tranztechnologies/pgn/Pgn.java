@@ -27,7 +27,7 @@ public final class Pgn {
         }
 
         Validation validation = validateDelimiters(source, options);
-        if (options.mode() == PgnMode.STRICT && validation.hasErrors()) {
+        if (validation.hasFatalErrors() || options.mode() == PgnMode.STRICT && validation.hasErrors()) {
             return new PgnDocument("1.0", List.of(), validation.diagnostics());
         }
 
@@ -66,7 +66,7 @@ public final class Pgn {
                 stack.push(character); offsets.push(i);
                 if (character == '(' && ++variationDepth > options.maxVariationDepth()) {
                     diagnostics.add(diagnostic(source, i, "PGN_VARIATION_DEPTH_EXCEEDED",
-                            severity(options), "Variation depth exceeds configured limit", String.valueOf(character)));
+                            PgnSeverity.FATAL, "Variation depth exceeds configured limit", String.valueOf(character)));
                 }
             } else if (character == '}' || character == ')') {
                 char expected = character == '}' ? '{' : '(';
@@ -104,5 +104,6 @@ public final class Pgn {
 
     private record Validation(String source, List<PgnDiagnostic> diagnostics) {
         boolean hasErrors() { return diagnostics.stream().anyMatch(d -> d.severity() == PgnSeverity.ERROR || d.severity() == PgnSeverity.FATAL); }
+        boolean hasFatalErrors() { return diagnostics.stream().anyMatch(d -> d.severity() == PgnSeverity.FATAL); }
     }
 }

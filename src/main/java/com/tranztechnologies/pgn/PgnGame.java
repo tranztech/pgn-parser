@@ -1,6 +1,8 @@
 package com.tranztechnologies.pgn;
 
 import java.util.List;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public record PgnGame(
@@ -15,6 +17,6 @@ public record PgnGame(
         comments = List.copyOf(comments);
         moves = List.copyOf(moves);
         diagnostics = List.copyOf(diagnostics);
-        metadata = Map.copyOf(metadata);
+        metadata = Collections.unmodifiableMap(new LinkedHashMap<>(metadata));
     }
 }

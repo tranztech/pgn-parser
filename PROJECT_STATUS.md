@@ -10,6 +10,10 @@
 - Defined draft AST 1.0, JSON Schema, diagnostics, and parser modes.
 - Added the modern `Pgn.parse` facade, immutable canonical Java records, basic defensive limits, and strict delimiter diagnostics without replacing the legacy parser.
 - Added shared fixtures for a basic game, comments/NAG/RAV behavior, and malformed comments.
+- Replaced space-only movetext scanning with a tokenizer supporting PGN whitespace, brace comments, semicolon comments, and safe variation tokens.
+- Added deterministic canonical JSON output without JSON tree models or a JSON writer dependency.
+- Added Unicode/BOM, multi-game, tokenizer, canonical JSON, and resource-limit tests.
+- Adopted the target Maven artifact ID `tranz-pgn` for the pre-1.0 build.
 
 ## In Progress
 
@@ -32,7 +36,6 @@
 - No SAN or chess-legality validation.
 - No streaming, source locations, resource limits, formatter, or normalizer.
 - TypeScript, Python, API, and CLI implementations have not started by design.
-- The current Maven artifact ID is `pgn`, not the target `tranz-pgn`.
 
 ## Decisions
 
