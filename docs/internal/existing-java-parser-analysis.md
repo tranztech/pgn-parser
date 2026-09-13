@@ -84,7 +84,7 @@ Single-game parsing is approximately linear in input length plus a final travers
 - Public implementation classes and mutable internals are exposed.
 - Naming is inconsistent (`colour` and `color`, `PGN*` acronym style).
 - `Worker` and Spring-named `application.properties` are unused remnants.
-- Maven Central metadata is incomplete and coordinates are still `com.tranztechnologies:pgn:0.0.1-SNAPSHOT`.
+- Maven Central metadata is incomplete and coordinates are still `com.tranztechnologies:pgn:1.0.0`.
 
 ## 10. Behaviour to preserve initially
 

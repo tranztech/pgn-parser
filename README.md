@@ -19,8 +19,8 @@ Add it to another Maven project:
 ```xml
 <dependency>
   <groupId>com.tranztechnologies</groupId>
-  <artifactId>tranz-pgn</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>pgn-parser</artifactId>
+  <version>1.0.0</version>
 </dependency>
 ```
 

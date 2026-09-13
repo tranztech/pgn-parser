@@ -2,7 +2,7 @@
 
 | Component | Package/API version | AST | API | Status |
 |---|---:|---:|---:|---|
-| Java legacy | 0.0.1-SNAPSHOT | none | n/a | behavioral reference |
+| Java legacy | 1.0.0 | none | n/a | behavioral reference |
 | Java modern | not released | 1.0 draft | n/a | planned |
 | TypeScript | not released | 1.0 draft | n/a | blocked on fixtures |
 | Python | not released | 1.0 draft | n/a | blocked on fixtures |
