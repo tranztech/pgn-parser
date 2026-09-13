@@ -1,0 +1,6 @@
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; }
+body { background: #f7f5ef; }
+a { color: inherit; text-decoration: none; }
+::selection { background: #d9ff57; color: #10251d; }

@@ -17,6 +17,17 @@ Build and install the current snapshot into your local Maven repository:
 Add it to another Maven project:
 
 ```xml
+<repositories>
+  <repository>
+    <id>github</id>
+    <url>https://maven.pkg.github.com/tranztech/pgn-parser</url>
+  </repository>
+</repositories>
+```
+
+GitHub Packages requires credentials in the consumer's Maven `settings.xml` under the matching `github` server ID. Then add:
+
+```xml
 <dependency>
   <groupId>com.tranztechnologies</groupId>
   <artifactId>pgn-parser</artifactId>
