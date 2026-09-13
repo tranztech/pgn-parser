@@ -1,0 +1,26 @@
+{
+  "manifestVersion": "0.1",
+  "referenceModel": "legacy-java-v0",
+  "tests": [
+    {
+      "id": "PGN-0001",
+      "description": "Basic tag roster and four-ply main line",
+      "input": "valid/basic-game.pgn",
+      "expected": "valid/basic-game.expected.json",
+      "mode": "REFERENCE"
+    },
+    {
+      "id": "PGN-0002",
+      "description": "Brace comments, numeric annotation, and recursive variation",
+      "input": "variations/comment-nag-rav.pgn",
+      "mode": "REFERENCE"
+    },
+    {
+      "id": "PGN-0003",
+      "description": "Strict mode diagnoses an unterminated comment",
+      "input": "malformed/unterminated-comment.pgn",
+      "mode": "STRICT",
+      "diagnostic": "PGN_UNTERMINATED_COMMENT"
+    }
+  ]
+}

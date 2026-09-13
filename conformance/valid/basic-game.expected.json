@@ -1,0 +1,15 @@
+{
+  "event": "Example",
+  "site": "Internet",
+  "date": "2026.09.13",
+  "round": "1",
+  "white": "Alice",
+  "black": "Bob",
+  "result": "1-0",
+  "moves": [
+    { "moveId": 1, "parentId": 0, "moveNumber": 1, "colour": "WHITE", "move": "e4" },
+    { "moveId": 2, "parentId": 1, "moveNumber": 1, "colour": "BLACK", "move": "e5" },
+    { "moveId": 3, "parentId": 2, "moveNumber": 2, "colour": "WHITE", "move": "Nf3" },
+    { "moveId": 4, "parentId": 3, "moveNumber": 2, "colour": "BLACK", "move": "Nc6" }
+  ]
+}

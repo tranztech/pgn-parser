@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pgn.tranztechnologies.com/schema/ast-1.0.json",
+  "title": "Tranz PGN canonical AST",
+  "type": "object",
+  "required": ["schemaVersion", "games", "diagnostics"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "games": { "type": "array", "items": { "$ref": "#/$defs/game" } },
+    "diagnostics": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "location": {
+      "type": "object",
+      "properties": {
+        "line": { "type": "integer", "minimum": 1 },
+        "column": { "type": "integer", "minimum": 1 },
+        "offset": { "type": "integer", "minimum": 0 },
+        "length": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "diagnostic": {
+      "type": "object",
+      "required": ["code", "severity", "message"],
+      "properties": {
+        "code": { "type": "string", "pattern": "^PGN_[A-Z0-9_]+$" },
+        "severity": { "enum": ["INFO", "WARNING", "ERROR", "FATAL"] },
+        "message": { "type": "string" },
+        "location": { "$ref": "#/$defs/location" },
+        "token": { "type": "string" },
+        "context": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "tag": {
+      "type": "object",
+      "required": ["name", "value"],
+      "properties": {
+        "name": { "type": "string" }, "value": { "type": "string" }, "location": { "$ref": "#/$defs/location" }
+      },
+      "additionalProperties": false
+    },
+    "comment": {
+      "type": "object", "required": ["text"],
+      "properties": { "text": { "type": "string" }, "location": { "$ref": "#/$defs/location" } },
+      "additionalProperties": false
+    },
+    "nag": {
+      "type": "object",
+      "properties": { "code": { "type": "integer", "minimum": 0 }, "symbol": { "type": "string" } },
+      "anyOf": [{ "required": ["code"] }, { "required": ["symbol"] }],
+      "additionalProperties": false
+    },
+    "move": {
+      "type": "object", "required": ["san", "nags", "commentsBefore", "commentsAfter", "variations"],
+      "properties": {
+        "moveNumber": { "type": "integer", "minimum": 1 },
+        "colour": { "enum": ["WHITE", "BLACK"] },
+        "san": { "type": "string", "minLength": 1 },
+        "nags": { "type": "array", "items": { "$ref": "#/$defs/nag" } },
+        "commentsBefore": { "type": "array", "items": { "$ref": "#/$defs/comment" } },
+        "commentsAfter": { "type": "array", "items": { "$ref": "#/$defs/comment" } },
+        "variations": { "type": "array", "items": { "$ref": "#/$defs/variation" } },
+        "location": { "$ref": "#/$defs/location" }
+      },
+      "additionalProperties": false
+    },
+    "variation": {
+      "type": "object", "required": ["moves"],
+      "properties": { "moves": { "type": "array", "items": { "$ref": "#/$defs/move" } } },
+      "additionalProperties": false
+    },
+    "game": {
+      "type": "object", "required": ["tags", "comments", "moves", "diagnostics"],
+      "properties": {
+        "tags": { "type": "array", "items": { "$ref": "#/$defs/tag" } },
+        "comments": { "type": "array", "items": { "$ref": "#/$defs/comment" } },
+        "moves": { "type": "array", "items": { "$ref": "#/$defs/move" } },
+        "result": { "enum": ["1-0", "0-1", "1/2-1/2", "*"] },
+        "diagnostics": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } },
+        "metadata": { "type": "object" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

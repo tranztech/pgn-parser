@@ -1,0 +1,837 @@
+{
+  "$0": {
+    "NAME": "Null Annotation",
+    "SYMBOL": "",
+    "CODE": "$0"
+  },
+  "$1": {
+    "NAME": "Good Move",
+    "SYMBOL": "!",
+    "CODE": "$1"
+  },
+  "$2": {
+    "NAME": "Poor Move",
+    "SYMBOL": "?",
+    "CODE": "$2"
+  },
+  "$3": {
+    "NAME": "Very Good Move",
+    "SYMBOL": "!!",
+    "CODE": "$3"
+  },
+  "$4": {
+    "NAME": "Very Poor Move",
+    "SYMBOL": "??",
+    "CODE": "$4"
+  },
+  "$5": {
+    "NAME": "Interesting Move",
+    "SYMBOL": "!?",
+    "CODE": "$5"
+  },
+  "$6": {
+    "NAME": "Questionable Move",
+    "SYMBOL": "?!",
+    "CODE": "$6"
+  },
+  "$7": {
+    "CODE": "$7",
+    "SYMBOL": "□",
+    "NAME": "Forced move (all others lose quickly)"
+  },
+  "$8": {
+    "CODE": "$8",
+    "SYMBOL": "",
+    "NAME": "Singular move (no reasonable alternatives)"
+  },
+  "$9": {
+    "CODE": "$9",
+    "SYMBOL": "",
+    "NAME": "Worst move"
+  },
+  "$10": {
+    "CODE": "$10",
+    "SYMBOL": "=",
+    "NAME": "Drawish position"
+  },
+  "$11": {
+    "NAME": "Equal Chances, quite position",
+    "SYMBOL": "=",
+    "CODE": "$11"
+  },
+  "$12": {
+    "CODE": "$12",
+    "SYMBOL": "=",
+    "NAME": "equal chances, active position"
+  },
+  "$13": {
+    "CODE": "$13",
+    "SYMBOL": "∞",
+    "NAME": "Unclear position"
+  },
+  "$14": {
+    "NAME": "White has a slight advantage",
+    "SYMBOL": "+/=",
+    "CODE": "$14"
+  },
+  "$15": {
+    "NAME": "Black has a slight advantage",
+    "SYMBOL": "=/+",
+    "CODE": "$15"
+  },
+  "$16": {
+    "NAME": "White has a moderate advantage",
+    "SYMBOL": "±",
+    "CODE": "$16"
+  },
+  "$17": {
+    "NAME": "Black has a moderate advantage",
+    "SYMBOL": "∓",
+    "CODE": "$17"
+  },
+  "$18": {
+    "NAME": "White has a decisive advantage",
+    "SYMBOL": "+-",
+    "CODE": "$18"
+  },
+  "$19": {
+    "NAME": "Black has a decisive advantage",
+    "SYMBOL": "-+",
+    "CODE": "$19"
+  },
+  "$20": {
+    "CODE": "$20",
+    "SYMBOL": "",
+    "NAME": "White has a crushing advantage (Black should resign)"
+  },
+  "$21": {
+    "CODE": "$21",
+    "SYMBOL": "",
+    "NAME": "Black has a crushing advantage (White should resign)"
+  },
+  "$22": {
+    "CODE": "$22",
+    "SYMBOL": "⨀",
+    "NAME": "White is in zugzwang"
+  },
+  "$23": {
+    "CODE": "$23",
+    "SYMBOL": "⨀",
+    "NAME": "Black is in zugzwang"
+  },
+  "$24": {
+    "CODE": "$24",
+    "SYMBOL": "",
+    "NAME": "White has a slight space advantage"
+  },
+  "$25": {
+    "CODE": "$25",
+    "SYMBOL": "",
+    "NAME": "Black has a slight space advantage"
+  },
+  "$26": {
+    "CODE": "$26",
+    "SYMBOL": "",
+    "NAME": "White has a moderate space advantage"
+  },
+  "$27": {
+    "CODE": "$27",
+    "SYMBOL": "",
+    "NAME": "Black has a moderate space advantage"
+  },
+  "$28": {
+    "CODE": "$28",
+    "SYMBOL": "",
+    "NAME": "White has a decisive space advantage"
+  },
+  "$29": {
+    "CODE": "$29",
+    "SYMBOL": "",
+    "NAME": "Black has a decisive space advantage"
+  },
+  "$30": {
+    "CODE": "$30",
+    "SYMBOL": "",
+    "NAME": "White has a slight time (development) advantage"
+  },
+  "$31": {
+    "CODE": "$31",
+    "SYMBOL": "",
+    "NAME": "Black has a slight time (development) advantage"
+  },
+  "$32": {
+    "CODE": "$32",
+    "SYMBOL": "⟳",
+    "NAME": "White has a moderate time (development) advantage"
+  },
+  "$33": {
+    "CODE": "$33",
+    "SYMBOL": "⟳",
+    "NAME": "Black has a moderate time (development) advantage"
+  },
+  "$34": {
+    "CODE": "$34",
+    "SYMBOL": "",
+    "NAME": "White has a decisive time (development) advantage"
+  },
+  "$35": {
+    "CODE": "$35",
+    "SYMBOL": "",
+    "NAME": "Black has a decisive time (development) advantage"
+  },
+  "$36": {
+    "CODE": "$36",
+    "SYMBOL": "→",
+    "NAME": "White has the initiative"
+  },
+  "$37": {
+    "CODE": "$37",
+    "SYMBOL": "→",
+    "NAME": "Black has the initiative"
+  },
+  "$38": {
+    "CODE": "$38",
+    "SYMBOL": "",
+    "NAME": "White has a lasting initiative"
+  },
+  "$39": {
+    "CODE": "$39",
+    "SYMBOL": "",
+    "NAME": "Black has a lasting initiative"
+  },
+  "$40": {
+    "CODE": "$40",
+    "SYMBOL": "↑",
+    "NAME": "White has the attack"
+  },
+  "$41": {
+    "CODE": "$41",
+    "SYMBOL": "↑",
+    "NAME": "Black has the attack"
+  },
+  "$42": {
+    "CODE": "$42",
+    "SYMBOL": "",
+    "NAME": "White has insufficient compensation for material deficit"
+  },
+  "$43": {
+    "CODE": "$43",
+    "SYMBOL": "",
+    "NAME": "Black has insufficient compensation for material deficit"
+  },
+  "$44": {
+    "CODE": "$44",
+    "SYMBOL": "",
+    "NAME": "White has sufficient compensation for material deficit"
+  },
+  "$45": {
+    "CODE": "$45",
+    "SYMBOL": "",
+    "NAME": "Black has sufficient compensation for material deficit"
+  },
+  "$46": {
+    "CODE": "$46",
+    "SYMBOL": "",
+    "NAME": "White has more than adequate compensation for material deficit"
+  },
+  "$47": {
+    "CODE": "$47",
+    "SYMBOL": "",
+    "NAME": "Black has more than adequate compensation for material deficit"
+  },
+  "$48": {
+    "CODE": "$48",
+    "SYMBOL": "",
+    "NAME": "White has a slight center control advantage"
+  },
+  "$49": {
+    "CODE": "$49",
+    "SYMBOL": "",
+    "NAME": "Black has a slight center control advantage"
+  },
+  "$50": {
+    "CODE": "$50",
+    "SYMBOL": "",
+    "NAME": "White has a moderate center control advantage"
+  },
+  "$51": {
+    "CODE": "$51",
+    "SYMBOL": "",
+    "NAME": "Black has a moderate center control advantage"
+  },
+  "$52": {
+    "CODE": "$52",
+    "SYMBOL": "",
+    "NAME": "White has a decisive center control advantage"
+  },
+  "$53": {
+    "CODE": "$53",
+    "SYMBOL": "",
+    "NAME": "Black has a decisive center control advantage"
+  },
+  "$54": {
+    "CODE": "$54",
+    "SYMBOL": "",
+    "NAME": "White has a slight kingside control advantage"
+  },
+  "$55": {
+    "CODE": "$55",
+    "SYMBOL": "",
+    "NAME": "Black has a slight kingside control advantage"
+  },
+  "$56": {
+    "CODE": "$56",
+    "SYMBOL": "",
+    "NAME": "White has a moderate kingside control advantage"
+  },
+  "$57": {
+    "CODE": "$57",
+    "SYMBOL": "",
+    "NAME": "Black has a moderate kingside control advantage"
+  },
+  "$58": {
+    "CODE": "$58",
+    "SYMBOL": "",
+    "NAME": "White has a decisive kingside control advantage"
+  },
+  "$59": {
+    "CODE": "$59",
+    "SYMBOL": "",
+    "NAME": "Black has a decisive kingside control advantage"
+  },
+  "$60": {
+    "CODE": "$60",
+    "SYMBOL": "",
+    "NAME": "White has a slight queenside control advantage"
+  },
+  "$61": {
+    "CODE": "$61",
+    "SYMBOL": "",
+    "NAME": "Black has a slight queenside control advantage"
+  },
+  "$62": {
+    "CODE": "$62",
+    "SYMBOL": "",
+    "NAME": "White has a moderate queenside control advantage"
+  },
+  "$63": {
+    "CODE": "$63",
+    "SYMBOL": "",
+    "NAME": "Black has a moderate queenside control advantage"
+  },
+  "$64": {
+    "CODE": "$64",
+    "SYMBOL": "",
+    "NAME": "White has a decisive queenside control advantage"
+  },
+  "$65": {
+    "CODE": "$65",
+    "SYMBOL": "",
+    "NAME": "Black has a decisive queenside control advantage"
+  },
+  "$66": {
+    "CODE": "$66",
+    "SYMBOL": "",
+    "NAME": "White has a vulnerable first rank"
+  },
+  "$67": {
+    "CODE": "$67",
+    "SYMBOL": "",
+    "NAME": "Black has a vulnerable first rank"
+  },
+  "$68": {
+    "CODE": "$68",
+    "SYMBOL": "",
+    "NAME": "White has a well protected first rank"
+  },
+  "$69": {
+    "CODE": "$69",
+    "SYMBOL": "",
+    "NAME": "Black has a well protected first rank"
+  },
+  "$70": {
+    "CODE": "$70",
+    "SYMBOL": "",
+    "NAME": "White has a poorly protected king"
+  },
+  "$71": {
+    "CODE": "$71",
+    "SYMBOL": "",
+    "NAME": "Black has a poorly protected king"
+  },
+  "$72": {
+    "CODE": "$72",
+    "SYMBOL": "",
+    "NAME": "White has a well protected king"
+  },
+  "$73": {
+    "CODE": "$73",
+    "SYMBOL": "",
+    "NAME": "Black has a well protected king"
+  },
+  "$74": {
+    "CODE": "$74",
+    "SYMBOL": "",
+    "NAME": "White has a poorly placed king"
+  },
+  "$75": {
+    "CODE": "$75",
+    "SYMBOL": "",
+    "NAME": "Black has a poorly placed king"
+  },
+  "$76": {
+    "CODE": "$76",
+    "SYMBOL": "",
+    "NAME": "White has a well placed king"
+  },
+  "$77": {
+    "CODE": "$77",
+    "SYMBOL": "",
+    "NAME": "Black has a well placed king"
+  },
+  "$78": {
+    "CODE": "$78",
+    "SYMBOL": "",
+    "NAME": "White has a very weak pawn structure"
+  },
+  "$79": {
+    "CODE": "$79",
+    "SYMBOL": "",
+    "NAME": "Black has a very weak pawn structure"
+  },
+  "$80": {
+    "CODE": "$80",
+    "SYMBOL": "",
+    "NAME": "White has a moderately weak pawn structure"
+  },
+  "$81": {
+    "CODE": "$81",
+    "SYMBOL": "",
+    "NAME": "Black has a moderately weak pawn structure"
+  },
+  "$82": {
+    "CODE": "$82",
+    "SYMBOL": "",
+    "NAME": "White has a moderately strong pawn structure"
+  },
+  "$83": {
+    "CODE": "$83",
+    "SYMBOL": "",
+    "NAME": "Black has a moderately strong pawn structure"
+  },
+  "$84": {
+    "CODE": "$84",
+    "SYMBOL": "",
+    "NAME": "White has a very strong pawn structure"
+  },
+  "$85": {
+    "CODE": "$85",
+    "SYMBOL": "",
+    "NAME": "Black has a very strong pawn structure"
+  },
+  "$86": {
+    "CODE": "$86",
+    "SYMBOL": "",
+    "NAME": "White has poor knight placement"
+  },
+  "$87": {
+    "CODE": "$87",
+    "SYMBOL": "",
+    "NAME": "Black has poor knight placement"
+  },
+  "$88": {
+    "CODE": "$88",
+    "SYMBOL": "",
+    "NAME": "White has good knight placement"
+  },
+  "$89": {
+    "CODE": "$89",
+    "SYMBOL": "",
+    "NAME": "Black has good knight placement"
+  },
+  "$90": {
+    "CODE": "$90",
+    "SYMBOL": "",
+    "NAME": "White has poor bishop placement"
+  },
+  "$91": {
+    "CODE": "$91",
+    "SYMBOL": "",
+    "NAME": "Black has poor bishop placement"
+  },
+  "$92": {
+    "CODE": "$92",
+    "SYMBOL": "",
+    "NAME": "White has good bishop placement"
+  },
+  "$93": {
+    "CODE": "$93",
+    "SYMBOL": "",
+    "NAME": "Black has good bishop placement"
+  },
+  "$94": {
+    "CODE": "$94",
+    "SYMBOL": "",
+    "NAME": "White has poor rook placement"
+  },
+  "$95": {
+    "CODE": "$95",
+    "SYMBOL": "",
+    "NAME": "Black has poor rook placement"
+  },
+  "$96": {
+    "CODE": "$96",
+    "SYMBOL": "",
+    "NAME": "White has good rook placement"
+  },
+  "$97": {
+    "CODE": "$97",
+    "SYMBOL": "",
+    "NAME": "Black has good rook placement"
+  },
+  "$98": {
+    "CODE": "$98",
+    "SYMBOL": "",
+    "NAME": "White has poor queen placement"
+  },
+  "$99": {
+    "CODE": "$99",
+    "SYMBOL": "",
+    "NAME": "Black has poor queen placement"
+  },
+  "$100": {
+    "CODE": "$100",
+    "SYMBOL": "",
+    "NAME": "White has good queen placement"
+  },
+  "$101": {
+    "CODE": "$101",
+    "SYMBOL": "",
+    "NAME": "Black has good queen placement"
+  },
+  "$102": {
+    "CODE": "$102",
+    "SYMBOL": "",
+    "NAME": "White has poor piece coordination"
+  },
+  "$103": {
+    "CODE": "$103",
+    "SYMBOL": "",
+    "NAME": "Black has poor piece coordination"
+  },
+  "$104": {
+    "CODE": "$104",
+    "SYMBOL": "",
+    "NAME": "White has good piece coordination"
+  },
+  "$105": {
+    "CODE": "$105",
+    "SYMBOL": "",
+    "NAME": "Black has good piece coordination"
+  },
+  "$106": {
+    "CODE": "$106",
+    "SYMBOL": "",
+    "NAME": "White has played the opening very poorly"
+  },
+  "$107": {
+    "CODE": "$107",
+    "SYMBOL": "",
+    "NAME": "Black has played the opening very poorly"
+  },
+  "$108": {
+    "CODE": "$108",
+    "SYMBOL": "",
+    "NAME": "White has played the opening poorly"
+  },
+  "$109": {
+    "CODE": "$109",
+    "SYMBOL": "",
+    "NAME": "Black has played the opening poorly"
+  },
+  "$110": {
+    "CODE": "$110",
+    "SYMBOL": "",
+    "NAME": "White has played the opening well"
+  },
+  "$111": {
+    "CODE": "$111",
+    "SYMBOL": "",
+    "NAME": "Black has played the opening well"
+  },
+  "$112": {
+    "CODE": "$112",
+    "SYMBOL": "",
+    "NAME": "White has played the opening very well"
+  },
+  "$113": {
+    "CODE": "$113",
+    "SYMBOL": "",
+    "NAME": "Black has played the opening very well"
+  },
+  "$115": {
+    "CODE": "$115",
+    "SYMBOL": "",
+    "NAME": "Black has played the middlegame very poorly"
+  },
+  "$114": {
+    "CODE": "$114",
+    "SYMBOL": "",
+    "NAME": "White has played the middlegame very poorly"
+  },
+  "$116": {
+    "CODE": "$116",
+    "SYMBOL": "",
+    "NAME": "White has played the middlegame poorly"
+  },
+  "$117": {
+    "CODE": "$117",
+    "SYMBOL": "",
+    "NAME": "Black has played the middlegame poorly"
+  },
+  "$118": {
+    "CODE": "$118",
+    "SYMBOL": "",
+    "NAME": "White has played the middlegame well"
+  },
+  "$119": {
+    "CODE": "$119",
+    "SYMBOL": "",
+    "NAME": "Black has played the middlegame well"
+  },
+  "$120": {
+    "CODE": "$120",
+    "SYMBOL": "",
+    "NAME": "White has played the middlegame very well"
+  },
+  "$121": {
+    "CODE": "$121",
+    "SYMBOL": "",
+    "NAME": "Black has played the middlegame very well"
+  },
+  "$122": {
+    "CODE": "$122",
+    "SYMBOL": "",
+    "NAME": "White has played the ending very poorly"
+  },
+  "$123": {
+    "CODE": "$123",
+    "SYMBOL": "",
+    "NAME": "Black has played the ending very poorly"
+  },
+  "$124": {
+    "CODE": "$124",
+    "SYMBOL": "",
+    "NAME": "White has played the ending poorly"
+  },
+  "$125": {
+    "CODE": "$125",
+    "SYMBOL": "",
+    "NAME": "Black has played the ending poorly"
+  },
+  "$126": {
+    "CODE": "$126",
+    "SYMBOL": "",
+    "NAME": "White has played the ending well"
+  },
+  "$127": {
+    "CODE": "$127",
+    "SYMBOL": "",
+    "NAME": "Black has played the ending well"
+  },
+  "$128": {
+    "CODE": "$128",
+    "SYMBOL": "",
+    "NAME": "White has played the ending very well"
+  },
+  "$129": {
+    "CODE": "$129",
+    "SYMBOL": "",
+    "NAME": "Black has played the ending very well"
+  },
+  "$130": {
+    "CODE": "$130",
+    "SYMBOL": "",
+    "NAME": "White has slight counterplay"
+  },
+  "$131": {
+    "CODE": "$131",
+    "SYMBOL": "",
+    "NAME": "Black has slight counterplay"
+  },
+  "$132": {
+    "CODE": "$132",
+    "SYMBOL": "⇆",
+    "NAME": "White has moderate counterplay"
+  },
+  "$133": {
+    "CODE": "$133",
+    "SYMBOL": "⇆",
+    "NAME": "Black has moderate counterplay"
+  },
+  "$134": {
+    "CODE": "$134",
+    "SYMBOL": "",
+    "NAME": "White has decisive counterplay"
+  },
+  "$135": {
+    "CODE": "$135",
+    "SYMBOL": "",
+    "NAME": "Black has decisive counterplay"
+  },
+  "$136": {
+    "CODE": "$136",
+    "SYMBOL": "",
+    "NAME": "White has moderate time control pressure"
+  },
+  "$137": {
+    "CODE": "$137",
+    "SYMBOL": "",
+    "NAME": "Black has moderate time control pressure"
+  },
+  "$138": {
+    "CODE": "$138",
+    "SYMBOL": "",
+    "NAME": "White has severe time control pressure"
+  },
+  "$139": {
+    "CODE": "$139",
+    "SYMBOL": "",
+    "NAME": "Black has severe time control pressure"
+  },
+  "$140": {
+    "CODE": "$140",
+    "SYMBOL": "∆",
+    "NAME": "With the idea..."
+  },
+  "$141": {
+    "CODE": "$141",
+    "SYMBOL": "",
+    "NAME": "Aimed against..."
+  },
+  "$142": {
+    "CODE": "$142",
+    "SYMBOL": "⌓",
+    "NAME": "Better is..."
+  },
+  "$143": {
+    "CODE": "$143",
+    "SYMBOL": "",
+    "NAME": "Worse is..."
+  },
+  "$144": {
+    "CODE": "$144",
+    "SYMBOL": "",
+    "NAME": "Equivalent is..."
+  },
+  "$145": {
+    "CODE": "$145",
+    "SYMBOL": "\"RR\"",
+    "NAME": "Editorial comment"
+  },
+  "$146": {
+    "CODE": "$146",
+    "SYMBOL": "\"N\"",
+    "NAME": "Novelty"
+  },
+  "$220": {
+    "CODE": "$220",
+    "SYMBOL": "",
+    "NAME": "Diagram"
+  },
+  "$221": {
+    "CODE": "$221",
+    "SYMBOL": "",
+    "NAME": "Diagram (from Black)"
+  },
+  "$238": {
+    "CODE": "$238",
+    "SYMBOL": "",
+    "NAME": "Space advantage"
+  },
+  "$239": {
+    "CODE": "$239",
+    "SYMBOL": "⇔",
+    "NAME": "File (columns on the chessboard labeled a-h)"
+  },
+  "$240": {
+    "CODE": "$240",
+    "SYMBOL": "⇗",
+    "NAME": "Diagonal"
+  },
+  "$241": {
+    "CODE": "$241",
+    "SYMBOL": "",
+    "NAME": "Centre"
+  },
+  "$242": {
+    "CODE": "$242",
+    "SYMBOL": "⟫",
+    "NAME": "King-side"
+  },
+  "$243": {
+    "CODE": "$243",
+    "SYMBOL": "⟪",
+    "NAME": "Queen-side"
+  },
+  "$244": {
+    "CODE": "$244",
+    "SYMBOL": "✕",
+    "NAME": "Weak point"
+  },
+  "$245": {
+    "CODE": "$245",
+    "SYMBOL": "⊥",
+    "NAME": "Ending"
+  },
+  "$246": {
+    "CODE": "$246",
+    "SYMBOL": "",
+    "NAME": "Bishop pair"
+  },
+  "$247": {
+    "CODE": "$247",
+    "SYMBOL": "",
+    "NAME": "Opposite Bishops"
+  },
+  "$248": {
+    "CODE": "$248",
+    "SYMBOL": "",
+    "NAME": "Same Bishops"
+  },
+  "$249": {
+    "CODE": "$249",
+    "SYMBOL": "text",
+    "NAME": "Connected pawns"
+  },
+  "$250": {
+    "CODE": "$250",
+    "SYMBOL": "text",
+    "NAME": "Isolated pawns"
+  },
+  "$251": {
+    "CODE": "$251",
+    "SYMBOL": "text",
+    "NAME": "Doubled pawns"
+  },
+  "$252": {
+    "CODE": "$252",
+    "SYMBOL": "",
+    "NAME": "Passed pawn"
+  },
+  "$253": {
+    "CODE": "$253",
+    "SYMBOL": "text",
+    "NAME": "Pawn majority"
+  },
+  "$254": {
+    "CODE": "$254",
+    "SYMBOL": "",
+    "NAME": "With"
+  },
+  "$255": {
+    "CODE": "$255",
+    "SYMBOL": "",
+    "NAME": "Without"
+  }
+}
